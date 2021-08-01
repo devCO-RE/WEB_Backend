@@ -1,0 +1,3 @@
+include ':microservices:user-service'
+include ':microservices:material-service'
+include ':microservices:user-composite-service'
