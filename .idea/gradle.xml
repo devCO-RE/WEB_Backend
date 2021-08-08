@@ -13,6 +13,16 @@
             <option value="$PROJECT_DIR$/microservices/material-service" />
             <option value="$PROJECT_DIR$/microservices/user-composite-service" />
             <option value="$PROJECT_DIR$/microservices/user-service" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/util" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
       </GradleProjectSettings>
