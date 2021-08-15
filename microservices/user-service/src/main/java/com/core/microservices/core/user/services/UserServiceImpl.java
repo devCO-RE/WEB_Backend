@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(int userId){
-        return new User(userId, "123", "name-"+userId, null, "123", null, null, false, serviceUtil.getServiceAddress());
+        return new User(userId, "youyou", "123", "name-"+userId, null, "123", null, null, false, serviceUtil.getServiceAddress());
     }
 
 

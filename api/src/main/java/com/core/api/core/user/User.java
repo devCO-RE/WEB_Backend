@@ -3,6 +3,7 @@ package com.core.api.core.user;
 public class User {
 
     private final int userId;
+    private final String identity;
     private final String password;
     private final String name;
     private final Integer companyId;
@@ -14,6 +15,7 @@ public class User {
 
     public User() {
         userId = 0;
+        identity = "youyou";
         password = "123";
         name = "sy";
         companyId = null;
@@ -24,8 +26,9 @@ public class User {
         serviceAddress = null;
     }
 
-    public User(int userId, String password, String name, Integer companyId, String phoneNum, String userImage, String celebrityUrl, Boolean celebrity, String serviceAddress) {
+    public User(int userId, String identity, String password, String name, Integer companyId, String phoneNum, String userImage, String celebrityUrl, Boolean celebrity, String serviceAddress) {
         this.userId = userId;
+        this.identity = identity;
         this.password = password;
         this.name = name;
         this.companyId = companyId;
@@ -40,6 +43,9 @@ public class User {
         return userId;
     }
 
+    public String getIdentity(){
+        return identity;
+    }
     public String getPassword() {
         return password;
     }
