@@ -5,6 +5,21 @@ logging:
     root: INFO
     com.core.microservices: DEBUG
 
+## Multipart properties
+# Enable multipart uploads
+spring.servlet.multipart.enabled: true
+
+# Max file size.
+spring.servlet.multipart.max-file-size: 200MB
+
+# Max Request Size
+spring.servlet.multipart.max-request-size: 215MB
+
+## File Storage Properties
+# All files uploaded through the REST API will be stored in this directory
+
+## 프로젝트내의 폴더에 업로드 파일을 설정
+file.upload-dir: ./uploads
 
 ---
 spring:

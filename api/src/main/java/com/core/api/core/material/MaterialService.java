@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 public interface MaterialService {
 
     //upload material
-    //후에 제보 대상은 token에서 parsing필요
+    //have to parse token later
     @CrossOrigin(origins = "*")
     @ResponseStatus(value = HttpStatus.OK)
     @PostMapping(
