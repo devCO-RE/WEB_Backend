@@ -1,7 +1,9 @@
 package com.core.api.core.material;
 
+import com.core.api.core.payload.FileUploadResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface MaterialService {
 
@@ -14,5 +16,7 @@ public interface MaterialService {
             consumes = "application/json",
             produces = "application/json"
     )
-    MaterialDTO sendMaterial(@PathVariable int userId, @RequestBody MaterialDTO materialDTO);
+    FileUploadResponse sendMaterial(@PathVariable int userId,
+                                    @RequestParam("file") MultipartFile file,
+                                    @RequestBody MaterialDTO materialDTO);
 }
