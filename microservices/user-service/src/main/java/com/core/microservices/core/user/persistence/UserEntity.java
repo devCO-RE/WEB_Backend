@@ -3,11 +3,12 @@ package com.core.microservices.core.user.persistence;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor
+@Setter
 @Entity
 @Table(name = "user")
 public class UserEntity {
@@ -33,6 +34,8 @@ public class UserEntity {
 
     private Boolean celebrity;
 
+    public UserEntity() {
+    }
 
     @Builder
     public UserEntity(String identity, String password, String name, Integer companyId, String phoneNum, String userImage, String celebrityUrl, Boolean celebrity){
