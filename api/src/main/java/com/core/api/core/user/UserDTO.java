@@ -1,8 +1,8 @@
 package com.core.api.core.user;
 
-public class User {
+public class UserDTO {
 
-    private final int userId;
+    private final String identity;
     private final String password;
     private final String name;
     private final Integer companyId;
@@ -12,8 +12,8 @@ public class User {
     private final Boolean celebrity;
     private final String serviceAddress;
 
-    public User() {
-        userId = 0;
+    public UserDTO() {
+        identity = "youyou";
         password = "123";
         name = "sy";
         companyId = null;
@@ -24,8 +24,8 @@ public class User {
         serviceAddress = null;
     }
 
-    public User(int userId, String password, String name, Integer companyId, String phoneNum, String userImage, String celebrityUrl, Boolean celebrity, String serviceAddress) {
-        this.userId = userId;
+    public UserDTO(String identity, String password, String name, Integer companyId, String phoneNum, String userImage, String celebrityUrl, Boolean celebrity, String serviceAddress) {
+        this.identity = identity;
         this.password = password;
         this.name = name;
         this.companyId = companyId;
@@ -36,10 +36,10 @@ public class User {
         this.serviceAddress = serviceAddress;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
+    public String getIdentity(){
+        return identity;
+    }
     public String getPassword() {
         return password;
     }

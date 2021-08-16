@@ -1,0 +1,25 @@
+app:
+  user-service:
+    host: localhost
+    port: 7001
+  material-service:
+    host: localhost
+    port: 7002
+
+logging:
+  level:
+    root: INFO
+    se.magnus: DEBUG
+
+---
+spring.profiles: docker
+
+server.port: 8080
+
+app:
+  user-service:
+    host: user
+    port: 8080
+  material-service:
+    host: material
+    port: 8080
