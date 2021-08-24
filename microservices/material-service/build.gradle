@@ -36,6 +36,11 @@ dependencies {
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
+	//jpa + mysql
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
+	runtimeOnly 'mysql:mysql-connector-java'
+
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'com.h2database:h2'
 
