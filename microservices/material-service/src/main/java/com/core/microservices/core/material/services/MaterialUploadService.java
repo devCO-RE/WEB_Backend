@@ -1,15 +1,19 @@
 package com.core.microservices.core.material.services;
 
+import com.core.microservices.core.material.exception.FileDownloadException;
 import com.core.microservices.core.material.exception.FileUploadException;
 import com.core.microservices.core.material.persistence.MaterialRepository;
 import com.core.microservices.core.material.property.FileUploadProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,6 +53,22 @@ public class MaterialUploadService {
             return fileName;
         }catch(Exception e) {
             throw new FileUploadException("["+fileName+"] 파일 업로드에 실패하였습니다. 다시 시도하십시오.",e);
+        }
+    }
+
+    // file download source
+    public Resource loadFileAsResource(String fileName) {
+        try {
+            Path filePath = this.fileLocation.resolve(fileName).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+
+            if(resource.exists()) {
+                return resource;
+            }else {
+                throw new FileDownloadException(fileName + " 파일을 찾을 수 없습니다.");
+            }
+        }catch(MalformedURLException e) {
+            throw new FileDownloadException(fileName + " 파일을 찾을 수 없습니다.", e);
         }
     }
 
