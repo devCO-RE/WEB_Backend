@@ -55,7 +55,7 @@ public class S3UploadService {
 			s3Client.putObject(
 				new PutObjectRequest(bucketName + Integer.toString(toUserId), sb.toString(), file.getInputStream(),
 					omd));
-			return sb.toString();
+			return s3Client.getUrl(bucketName+Integer.toString(toUserId), sb.toString()).toString();
 		}catch(IOException e){
 			//dont put object
 			return null;

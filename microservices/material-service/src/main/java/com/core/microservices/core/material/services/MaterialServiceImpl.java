@@ -58,11 +58,11 @@ public class MaterialServiceImpl implements MaterialService {
         String time_now = format1.format (time);
 
         // 받은 multipartFile s3에 upload
-        String filename = s3service.uploadMaterial(file, time_now, "core", userId);
+        String fileurl = s3service.uploadMaterial(file, time_now, "core", userId);
 
         //  filename, 시간, fromId 항상 1, toId = userId, approval default값, clarity null값, webUrl를 이용해서
         //  db 저장
-        MaterialEntity entity =  mapper.dtoToEntity(filename, 1, userId, "미승인", time, webUrl);
+        MaterialEntity entity =  mapper.dtoToEntity(fileurl, 1, userId, "미승인", time, webUrl);
         repository.save(entity);
 
         return new FileUploadResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
