@@ -33,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public MultipartResolver multipartResolver()
 	{
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-		multipartResolver.setMaxUploadSize(10485760); // 1024 * 1024 * 10 = 10 MB
+		multipartResolver.setMaxUploadSize(104857600); // 1024 * 1024 * 10 = 10 MB
 		return multipartResolver;
 	}
 
