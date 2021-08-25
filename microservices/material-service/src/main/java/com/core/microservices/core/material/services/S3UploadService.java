@@ -13,6 +13,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
@@ -31,6 +32,8 @@ public class S3UploadService {
 	final String regionName = "kr-standard";
 	final String bucketName = "corematerial";
 
+	public static final String CLOUD_FRONT_DOMAIN_NAME = "wiatfmhhelqh7856744.cdn.ntruss.com";
+
 	private static final Logger LOG = LoggerFactory.getLogger(S3UploadService.class);
 
 	public String uploadMaterial(MultipartFile file , String time, String serviceName, int toUserId) {
@@ -48,14 +51,16 @@ public class S3UploadService {
 		//	client 생성 -> 나중에 밖으로 빼줘야함
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
 			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
-			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(this.accessKey, this.secretKey)))
 			.build();
 
+		String folderName = Integer.toString(toUserId);
 		try {
 			s3Client.putObject(
-				new PutObjectRequest(bucketName + Integer.toString(toUserId), sb.toString(), file.getInputStream(),
-					omd));
-			return s3Client.getUrl(bucketName+Integer.toString(toUserId), sb.toString()).toString();
+				new PutObjectRequest(bucketName + "/" + folderName, sb.toString(), file.getInputStream(),
+					omd)
+			.withCannedAcl(CannedAccessControlList.PublicRead));
+			return s3Client.getUrl(bucketName+ "/" + folderName, sb.toString()).toString();
 		}catch(IOException e){
 			//dont put object
 			return null;

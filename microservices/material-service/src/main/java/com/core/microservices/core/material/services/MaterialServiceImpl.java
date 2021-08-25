@@ -2,8 +2,12 @@ package com.core.microservices.core.material.services;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.core.api.core.material.MaterialService;
+import com.core.api.core.material.ReportDTO;
 import com.core.api.core.payload.FileUploadResponse;
 import com.core.microservices.core.material.persistence.MaterialEntity;
 import com.core.microservices.core.material.persistence.MaterialRepository;
@@ -53,9 +57,9 @@ public class MaterialServiceImpl implements MaterialService {
             .toUriString();
 
         //현재 시간 가져오기
-        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd_HH-mm");
+        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm");
         LocalDateTime time = LocalDateTime.now();
-        String time_now = format1.format (time);
+        String time_now = time.format (formatter);
 
         // 받은 multipartFile s3에 upload
         String fileurl = s3service.uploadMaterial(file, time_now, "core", userId);
@@ -82,5 +86,25 @@ public class MaterialServiceImpl implements MaterialService {
         return new FileUploadResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
     }
 
+    @Override
+    public List<ReportDTO> getReportList(int userId) {
+
+        int toUserId = userId;
+
+        List<MaterialEntity> reportList = repository.findAllByToId(toUserId);
+        List<ReportDTO> reportDtoList = new ArrayList<>(); // 후에 mapper로 처리
+
+        for(MaterialEntity entity : reportList){
+            reportDtoList.add(convertReportEntityToDto(entity));
+        }
+        return reportDtoList;
+    }
+
+    private ReportDTO convertReportEntityToDto(MaterialEntity entity) {
+
+        String cdnFileName = "https://" + s3service.CLOUD_FRONT_DOMAIN_NAME + "/" + entity.getFileName();
+        return new ReportDTO(cdnFileName,entity.getFromId(), entity.getToId(),entity.getApproval(), entity.getCreateTime(), entity.getWebUrl());
+
+    }
 
 }
