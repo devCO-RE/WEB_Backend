@@ -8,10 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import org.springframework.lang.Nullable;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "material")
 public class MaterialEntity {
@@ -52,4 +52,67 @@ public class MaterialEntity {
 		this.webUrl = webUrl;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public int getFromId() {
+		return fromId;
+	}
+
+	public void setFromId(int fromId) {
+		this.fromId = fromId;
+	}
+
+	public int getToId() {
+		return toId;
+	}
+
+	public void setToId(int toId) {
+		this.toId = toId;
+	}
+
+	public String getApproval() {
+		return approval;
+	}
+
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+
+	public LocalDateTime getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
+
+	public double getClarity() {
+		return clarity;
+	}
+
+	public void setClarity(double clarity) {
+		this.clarity = clarity;
+	}
+
+	public String getWebUrl() {
+		return webUrl;
+	}
+
+	public void setWebUrl(String webUrl) {
+		this.webUrl = webUrl;
+	}
 }

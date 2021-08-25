@@ -1,6 +1,9 @@
 package com.core.api.core.material;
 
+import java.util.List;
+
 import com.core.api.core.payload.FileUploadResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,4 +34,10 @@ public interface MaterialService {
     FileUploadResponse sendMaterial1(
         @RequestPart("file") MultipartFile file
     );
+
+    // user-composite로 대 통합 필요
+    @GetMapping(
+        value = "/user/{userId}/report",
+        produces = "application/json")
+    List<ReportDTO> getReportList(@PathVariable int userId);
 }
