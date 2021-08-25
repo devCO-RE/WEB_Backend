@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.*;
 
 public interface UserService {
 
-//    //testing
-//    @GetMapping(
-//            value = "/user/{userId}",
-//            produces = "application/json")
-//    UserDTO getUser(@PathVariable int userId);
+    //testing
+    @GetMapping(
+            value = "/user/{userId}",
+            produces = "application/json")
+    UserDTO getUser(@PathVariable int userId);
 
     //user sign up
     @CrossOrigin(origins = "*")

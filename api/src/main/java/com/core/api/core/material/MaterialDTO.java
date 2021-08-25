@@ -1,5 +1,7 @@
 package com.core.api.core.material;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MaterialDTO {
 
     private final String webUrl;

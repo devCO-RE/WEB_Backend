@@ -29,11 +29,12 @@ public class UserServiceImpl implements UserService {
         this.mapper = mapper;
         this.serviceUtil = serviceUtil;
     }
-//    testing
-//    @Override
-//    public UserDTO getUser(int userId){
-//        return new UserDTO( "youyou", "123", "name-"+userId, null, "123", null, null, false, serviceUtil.getServiceAddress());
-//    }
+
+    //testing
+    @Override
+    public UserDTO getUser(int userId){
+        return new UserDTO( "youyou", "123", "name-"+userId, null, "123", null, null, false, serviceUtil.getServiceAddress());
+    }
 
     @Override
     public UserDTO addUser(UserDTO userDTO) {
