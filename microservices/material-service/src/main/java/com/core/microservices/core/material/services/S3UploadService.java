@@ -60,7 +60,9 @@ public class S3UploadService {
 				new PutObjectRequest(bucketName + "/" + folderName, sb.toString(), file.getInputStream(),
 					omd)
 			.withCannedAcl(CannedAccessControlList.PublicRead));
-			return s3Client.getUrl(bucketName+ "/" + folderName, sb.toString()).toString();
+
+			return folderName+"/"+sb.toString();
+			// return s3Client.getUrl(bucketName+ "/" + folderName, sb.toString()).toString();
 		}catch(IOException e){
 			//dont put object
 			return null;
