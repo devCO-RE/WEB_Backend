@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 public interface UserService {
 
     //testing
+    @CrossOrigin(origins = "*")
     @GetMapping(
             value = "/user/{userId}",
             produces = "application/json")
