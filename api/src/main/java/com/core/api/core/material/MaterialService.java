@@ -12,6 +12,7 @@ public interface MaterialService {
 
     //upload material
     //have to parse token later
+    @CrossOrigin(origins = "*")
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(
             value = "/material/{userId}"
@@ -31,11 +32,13 @@ public interface MaterialService {
         // consumes = "application/json",
         // produces = "application/json"
     )
+    @CrossOrigin(origins = "*")
     FileUploadResponse sendMaterial1(
         @RequestPart("file") MultipartFile file
     );
 
     // user-composite로 대 통합 필요
+    @CrossOrigin(origins = "*")
     @GetMapping(
         value = "/user/{userId}/report",
         produces = "application/json")
