@@ -48,14 +48,15 @@ public class S3UploadService {
 		//	client 생성 -> 나중에 밖으로 빼줘야함
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
 			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
-			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(this.accessKey, this.secretKey)))
 			.build();
 
+		String folderName = Integer.toString(toUserId);
 		try {
 			s3Client.putObject(
-				new PutObjectRequest(bucketName + Integer.toString(toUserId), sb.toString(), file.getInputStream(),
+				new PutObjectRequest(bucketName + "/" + folderName, sb.toString(), file.getInputStream(),
 					omd));
-			return s3Client.getUrl(bucketName+Integer.toString(toUserId), sb.toString()).toString();
+			return s3Client.getUrl(bucketName+ "/" + folderName, sb.toString()).toString();
 		}catch(IOException e){
 			//dont put object
 			return null;
