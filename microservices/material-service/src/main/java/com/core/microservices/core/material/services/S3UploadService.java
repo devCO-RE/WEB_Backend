@@ -31,12 +31,6 @@ public class S3UploadService {
 	final String regionName = "kr-standard";
 	final String bucketName = "corematerial";
 
-	final AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-		.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
-		.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
-		.build();
-
-
 	private static final Logger LOG = LoggerFactory.getLogger(S3UploadService.class);
 
 	public String uploadMaterial(MultipartFile file , String time, String serviceName, int toUserId) {
@@ -50,6 +44,13 @@ public class S3UploadService {
 		omd.setContentType(file.getContentType());
 		omd.setContentLength(file.getSize());
 		omd.setHeader("filename", sb.toString());
+
+		//	client 생성 -> 나중에 밖으로 빼줘야함
+		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
+			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+			.build();
+
 		try {
 			s3Client.putObject(
 				new PutObjectRequest(bucketName + Integer.toString(toUserId), sb.toString(), file.getInputStream(),
