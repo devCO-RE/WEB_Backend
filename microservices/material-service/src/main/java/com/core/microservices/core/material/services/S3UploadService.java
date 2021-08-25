@@ -13,6 +13,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
@@ -30,6 +31,8 @@ public class S3UploadService {
 	final String endPoint = "https://kr.object.ncloudstorage.com";
 	final String regionName = "kr-standard";
 	final String bucketName = "corematerial";
+
+	public static final String CLOUD_FRONT_DOMAIN_NAME = "wiatfmhhelqh7856744.cdn.ntruss.com";
 
 	private static final Logger LOG = LoggerFactory.getLogger(S3UploadService.class);
 
@@ -55,7 +58,8 @@ public class S3UploadService {
 		try {
 			s3Client.putObject(
 				new PutObjectRequest(bucketName + "/" + folderName, sb.toString(), file.getInputStream(),
-					omd));
+					omd)
+			.withCannedAcl(CannedAccessControlList.PublicRead));
 			return s3Client.getUrl(bucketName+ "/" + folderName, sb.toString()).toString();
 		}catch(IOException e){
 			//dont put object
