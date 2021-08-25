@@ -42,6 +42,13 @@ spring:
 
 file:
   upload-dir: ./uploads
+
+# s3
+aws:
+  s3:
+    access-id: 9v0u2ro1uZmCO9PEaylf
+    access-pw: tkJ6sqWupHD50yDdzAOqoto64sDEFiiWejQzjNVL
+
 ---
 spring:
   profiles: docker

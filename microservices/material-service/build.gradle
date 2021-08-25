@@ -67,6 +67,9 @@ dependencies {
 	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 	implementation 'commons-io:commons-io:2.6'
 
+//	naver cloud platform s3
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.238'
+
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 }
