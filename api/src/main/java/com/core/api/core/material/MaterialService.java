@@ -9,14 +9,26 @@ public interface MaterialService {
 
     //upload material
     //have to parse token later
-    @CrossOrigin(origins = "*")
-    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(
-            value = "/material/{userId}",
-            consumes = "application/json",
-            produces = "application/json"
+            value = "/material/{userId}"
+            // consumes = "application/json",
+            // produces = "application/json"
     )
-    FileUploadResponse sendMaterial(@PathVariable int userId,
-                                    @RequestParam("file") MultipartFile file,
-                                    @RequestBody MaterialDTO materialDTO);
+    FileUploadResponse sendMaterial(
+                                    @RequestPart("file") MultipartFile file,
+                                    @RequestParam("webUrl") String webUrl,
+                                    @PathVariable int userId
+                                    );
+
+
+    @ResponseStatus(value = HttpStatus.CREATED)
+    @PostMapping(
+        value = "/material"
+        // consumes = "application/json",
+        // produces = "application/json"
+    )
+    FileUploadResponse sendMaterial1(
+        @RequestPart("file") MultipartFile file
+    );
 }

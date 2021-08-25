@@ -17,7 +17,7 @@ bootJar.enabled = false
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-webflux')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
     //jwts
@@ -26,7 +26,7 @@ dependencies {
     runtime('io.jsonwebtoken:jjwt-jackson:0.10.7')
 
     //test
-    testImplementation 'org.springframework.security:spring-security-test'
+//    testImplementation 'org.springframework.security:spring-security-test'
 
     //junit4
     testImplementation('junit:junit:4.13')
@@ -39,7 +39,7 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-core', version: '1.9.+'
     testCompile group:'com.jayway.jsonpath', name:'json-path'
 
-    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.3.5.RELEASE'
+//    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.3.5.RELEASE'
 
     //junit mokito
     testImplementation 'org.mockito:mockito-junit-jupiter'

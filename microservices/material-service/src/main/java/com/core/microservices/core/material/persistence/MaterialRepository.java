@@ -1,5 +1,7 @@
 package com.core.microservices.core.material.persistence;
 
-public interface MaterialRepository<MaterialEntity, Integer>{
+import org.springframework.data.repository.CrudRepository;
+
+public interface MaterialRepository extends CrudRepository<MaterialEntity, Integer> {
 
 }
