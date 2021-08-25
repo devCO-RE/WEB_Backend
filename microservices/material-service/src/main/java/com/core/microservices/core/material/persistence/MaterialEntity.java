@@ -18,7 +18,8 @@ public class MaterialEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "materialId", unique = true, nullable = false)
+	//@Column(name = "materialId", unique = true, nullable = false)
+	@Column(name="materialId")
 	private int id;
 
 	private String fileName;

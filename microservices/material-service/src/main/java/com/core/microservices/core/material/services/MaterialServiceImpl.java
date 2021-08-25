@@ -1,8 +1,11 @@
 package com.core.microservices.core.material.services;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
 import com.core.api.core.material.MaterialService;
 import com.core.api.core.payload.FileUploadResponse;
+import com.core.microservices.core.material.persistence.MaterialEntity;
 import com.core.microservices.core.material.persistence.MaterialRepository;
 import com.core.util.http.ServiceUtil;
 
@@ -51,10 +54,16 @@ public class MaterialServiceImpl implements MaterialService {
 
         //현재 시간 가져오기
         SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd_HH-mm");
-        String time_now = format1.format (System.currentTimeMillis());
+        LocalDateTime time = LocalDateTime.now();
+        String time_now = format1.format (time);
 
         // 받은 multipartFile s3에 upload
         String filename = s3service.uploadMaterial(file, time_now, "core", userId);
+
+        //  filename, 시간, fromId 항상 1, toId = userId, approval default값, clarity null값, webUrl를 이용해서
+        //  db 저장
+        MaterialEntity entity =  mapper.dtoToEntity(filename, 1, userId, "미승인", time, webUrl);
+        repository.save(entity);
 
         return new FileUploadResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
     }
