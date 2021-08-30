@@ -1,0 +1,21 @@
+version: '3.0'
+services:
+  material-service:
+    build: microservices/material-service
+    ports:
+      - "8080:8080"
+    # mem_limit: 350m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  # user-service:
+  #   build: microservices/user-service
+  #   # mem_limit: 350m
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=docker
+  # user-composite-service:
+  #   build: microservices/user-composite-service
+  #   # mem_limit: 350m
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=docker
