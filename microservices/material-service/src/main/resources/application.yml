@@ -21,9 +21,9 @@ spring:
     generate-ddl: false
     database: mysql
   datasource:
-    url: jdbc:mysql://db-7avvq.pub-cdb.ntruss.com:3306/core_material?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: core
-    password: coredb1717!
+    url:
+    username:
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
     tomcat:
       validation-query: SELECT 1
@@ -46,8 +46,8 @@ file:
 # s3
 aws:
   s3:
-    access-id: 9v0u2ro1uZmCO9PEaylf
-    access-pw: tkJ6sqWupHD50yDdzAOqoto64sDEFiiWejQzjNVL
+    access-id:
+    access-pw:
 
 ---
 spring:
